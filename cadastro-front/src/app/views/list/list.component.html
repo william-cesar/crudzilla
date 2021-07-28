@@ -1,0 +1,67 @@
+<div class="container">
+  <h2 class="text-center mt-4">{{ title }}</h2>
+  <div
+    class="d-flex card justify-content-center align-items-center"
+    *ngIf="studentsList.students?.length"
+  >
+    <div
+      *ngFor="let student of studentsList.students"
+      class="card flex-row w-100 mb-3"
+    >
+      <div class="d-flex justify-content-center align-items-center w-25">
+        <img
+          *ngIf="student.photo && student.photo.photo; else altImg"
+          class="photo"
+          src="data:image/jpg;base64,{{ student.photo.photo }}"
+          alt="foto de {{ student.name }}"
+        />
+        <ng-template #altImg>
+          <img
+            class="photo default-user"
+            src="../../../assets/defaultUser.png"
+            alt="foto de {{ student.name }}"
+          />
+        </ng-template>
+      </div>
+      <div class="mx-2 w-75 info">
+        <p><span>Nome:</span> {{ student.name | titlecase }}</p>
+        <p><span>Endereço:</span> {{ student.address | titlecase }}</p>
+      </div>
+      <div ngbDropdown>
+        <span role="button" class="actions" id="dropdown" ngbDropdownToggle
+          >...</span
+        >
+        <div ngbDropdownMenu aria-labelledby="dropdown">
+          <button ngbDropdownItem routerLink="/students/edit/{{ student.id }}">
+            <fa-icon [icon]="faEdit"></fa-icon> Editar aluno(a)
+          </button>
+          <button ngbDropdownItem (click)="displayModal(student.id)">
+            <fa-icon [icon]="faTrash"></fa-icon> Remover aluno(a)
+          </button>
+        </div>
+      </div>
+    </div>
+    <ngb-pagination
+      [collectionSize]="studentsList.totalItems"
+      (pageChange)="changePage($event)"
+      [pageSize]="pageSize"
+      [maxSize]="pageSize"
+    ></ngb-pagination>
+  </div>
+  <ngx-loading [show]="loading"></ngx-loading>
+</div>
+
+<ng-template #confirmation let-modal>
+  <div class="modal-header">
+    <h3 class="modal-title">Excluir aluno(a)</h3>
+  </div>
+  <div class="modal-body">
+    <h5>Tem certeza que deseja remover este registro?</h5>
+  </div>
+  <div class="modal-footer d-flex flex-end">
+    <button class="btn btn-light primary-color" (click)="modal.dismiss()">
+      Cancelar
+    </button>
+    <button class="btn btn-danger" (click)="deleteStudent()">Excluir</button>
+  </div>
+</ng-template>

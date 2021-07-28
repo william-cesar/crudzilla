@@ -1,0 +1,114 @@
+<div class="container">
+  <h2 class="text-center mt-4">{{ title }}</h2>
+  <div class="d-flex justify-content-around flex-md-column card">
+    <form #studentForm="ngForm">
+      <div class="col-md-12 d-flex justify-content-center my-4">
+        <div class="photo-card card text-center">
+          <label
+            [ngClass]="
+              student.photo.length < 1 ? 'photo-label' : 'photo-label disabled'
+            "
+            for="studentPhoto"
+            ><fa-icon class="photo-icon" [icon]="faPortrait"></fa-icon>Adicionar
+            foto</label
+          >
+          <img
+            *ngIf="student.photo.length"
+            [src]="imgFile || student.photo[0]?.photo"
+            alt="foto do aluno(a)"
+          />
+          <button
+            *ngIf="student.photo.length"
+            class="remove-photo"
+            (click)="deletePhoto()"
+          >
+            X
+          </button>
+          <input
+            type="file"
+            id="studentPhoto"
+            name="studentPhoto"
+            accept=".jpeg, .jpg"
+            (change)="addPhoto($event)"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6 mb-4">
+          <label for="studentName"
+            >Nome<span class="text-danger">*</span></label
+          >
+          <input
+            name="studentName"
+            #studentName="ngModel"
+            [ngModel]="student.name | titlecase"
+            (ngModelChange)="student.name = $event"
+            type="text"
+            class="form-control border-primary"
+            id="studentName"
+            minlength="3"
+            maxlength="150"
+            required
+            onkeypress="return(event.charCode < 48 || event.charCode > 57)"
+          />
+          <div
+            *ngIf="
+              studentName.invalid && (studentName.dirty || studentName.touched)
+            "
+          >
+            <p *ngIf="studentName.errors?.required" class="text-danger mb-1">
+              Campo obrigatório.
+            </p>
+            <p *ngIf="studentName.errors?.minlength" class="text-danger mb-1">
+              Deve conter no mínimo 3 caracteres.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="studentAddress"
+            >Endereço<span class="text-danger">*</span></label
+          >
+          <input
+            name="studentAddress"
+            #studentAddress="ngModel"
+            [ngModel]="student.address | titlecase"
+            (ngModelChange)="student.address = $event"
+            type="text"
+            class="form-control border-primary"
+            id="studentAddress"
+            minlength="4"
+            maxlength="150"
+            required
+          />
+          <div
+            *ngIf="
+              studentAddress.invalid &&
+              (studentAddress.dirty || studentAddress.touched)
+            "
+          >
+            <p *ngIf="studentAddress.errors?.required" class="text-danger mb-1">
+              Campo obrigatório.
+            </p>
+            <p
+              *ngIf="studentAddress.errors?.minlength"
+              class="text-danger mb-1"
+            >
+              Deve conter no mínimo 4 caracteres.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-end mt-5">
+        <button
+          [disabled]="studentForm.invalid"
+          class="btn text-white primary-backgound px-3 py-2"
+          (click)="isNewStudent ? saveStudent() : updateStudent()"
+        >
+          {{ isNewStudent ? 'Cadastrar aluno(a)' : 'Editar aluno(a)' }}
+        </button>
+      </div>
+    </form>
+  </div>
+  <ngx-loading [show]="loading"></ngx-loading>
+</div>

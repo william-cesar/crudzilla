@@ -1,0 +1,36 @@
+:root {
+  --primary-color: #6c63ff;
+  --white: #f7f7f7;
+  --black: #202020;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+body,
+html {
+  height: 100vh;
+  background-color: var(--white);
+}
+
+.primary-color {
+  color: var(--primary-color) !important;
+}
+
+.primary-backgound {
+  background-color: var(--primary-color) !important;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 2px 4px 10px #c5c5c5;
+}
+
+.dropdown-toggle::after {
+  content: none;
+}

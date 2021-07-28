@@ -1,0 +1,39 @@
+#studentPhoto {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.photo-card {
+  width: 200px;
+}
+
+.photo-label {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
+}
+
+.photo-icon {
+  font-size: 5rem;
+}
+
+.photo-label.disabled {
+  display: none;
+}
+
+.remove-photo {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: #868686cf;
+  color: red;
+  border-radius: 50%;
+}

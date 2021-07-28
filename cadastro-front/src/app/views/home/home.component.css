@@ -1,0 +1,52 @@
+#home__title {
+  --text-length: 9;
+  --typewriter-animation-time: 3s;
+  --blinker-animation-time: 700ms;
+  --blinker-delay: 1s;
+  --background-color: var(--white);
+}
+
+#home__title {
+  font-size: 3rem;
+  position: relative;
+  font-family: monospace;
+}
+
+/* Animation setup */
+
+#home__title::before,
+#home__title::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+#home__title::before {
+  background-color: var(--background-color);
+  animation: typewriter var(--typewriter-animation-time)
+    steps(var(--text-length)) var(--blinker-delay) forwards;
+}
+
+#home__title::after {
+  width: 0.125em;
+  background-color: black;
+  animation: typewriter var(--typewriter-animation-time)
+      steps(var(--text-length)) var(--blinker-delay) forwards,
+    blinker var(--blinker-animation-time) steps(calc(var(--text-length) + 1))
+      infinite;
+}
+
+@keyframes typewriter {
+  to {
+    left: 100%;
+  }
+}
+
+@keyframes blinker {
+  to {
+    background-color: transparent;
+  }
+}

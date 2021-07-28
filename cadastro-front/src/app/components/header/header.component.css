@@ -1,0 +1,30 @@
+nav {
+  height: 70px;
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+ul {
+  width: 50%;
+  list-style-type: none;
+}
+
+li:hover {
+  color: var(--black);
+}
+
+.active {
+  border-bottom: 2px solid var(--white);
+}
+
+@media (max-width: 750px) {
+  nav {
+    height: 50px;
+  }
+
+  ul {
+    padding: 0 10px;
+    width: 100%;
+  }
+}

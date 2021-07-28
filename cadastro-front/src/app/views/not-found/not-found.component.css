@@ -1,0 +1,11 @@
+#not-found__title {
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+#not-found__img {
+  width: 250px;
+  height: 200px;
+  border-radius: 50%;
+  margin-bottom: 1.5rem;
+}
