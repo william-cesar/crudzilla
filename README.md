@@ -18,4 +18,4 @@ CRUD de cadastro com upload de imagem.
 
 ###
 
-#### 💻 Acesse a aplicação aqui [here](https://crudzilla-app.herokuapp.com/home "Acessar a aplicação")
+#### 💻 [Acesse a aplicação aqui](https://crudzilla-app.herokuapp.com/home "Acessar a aplicação")
